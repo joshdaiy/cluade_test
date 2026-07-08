@@ -1,0 +1,6 @@
+# Keep your essay drafts LOCAL — personal writing stays out of git history.
+# Everything in this folder is ignored except the template and this file itself.
+*
+!.gitignore
+!README.md
+!notes.template.md
