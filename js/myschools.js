@@ -197,4 +197,40 @@ SELECTIVITY (approx): CCNY is accessible; Macaulay Honors is selective and merit
 POSITION / WHY-US: For Macaulay, emphasize intellectual drive, NYC engagement, and how the honors resources amplify your semiconductor goals.
 ⚠ NOTE: This uses the CUNY/Macaulay application, NOT the Common App, and Macaulay's deadline (~mid-November) is much earlier than RD. Put this on your calendar first.`,
   },
+  {
+    name: 'North Carolina State University', platform: 'Common App', round: 'RD', deadline: '2027-01-15',
+    url: 'https://www.ece.ncsu.edu/', recs: '',
+    notes: 'RD deadline Jan 15, 2027. Non-binding EA Nov 1 recommended (earlier answer + scholarship consideration). Wide-bandgap bullseye — see research.',
+    research:
+`FIT (semiconductor/EE): One of the best wide-bandgap / power-device fits in the country — a direct match to your Stony Brook interest. Wolfspeed (formerly Cree), the SiC & GaN power-device leader, spun out of NC State, and the college anchors the NSF FREEDM Systems Center and PowerAmerica (power electronics). Strong ECE + materials with a real nanofabrication facility.
+CULTURE: Large NC public, hands-on, deeply industry-connected, less prestige-driven.
+SELECTIVITY (approx): Moderately selective OOS (~40–45%); Engineering more competitive — a solid target.
+POSITION / WHY-US: Name the Wolfspeed lineage, FREEDM, PowerAmerica, and wide-bandgap power-device interest explicitly. Almost no applicant connects these dots — you can, and should.
+WHAT ADMITS TEND TO SHOW: strong STEM record + specific, credible engineering focus.
+⚠ NOTE: EA (Nov 1) is non-binding — apply early for the earlier answer and merit/scholarship consideration.`,
+  },
+  {
+    name: 'Rensselaer Polytechnic Institute (RPI)', platform: 'Common App', round: 'RD', deadline: '2027-01-15',
+    url: 'https://ecse.rpi.edu/', recs: '',
+    notes: 'RD deadline Jan 15, 2027 (EA/ED I Nov 1, ED II Dec 15). Apply early + pursue merit — see research.',
+    research:
+`FIT (semiconductor/EE): Serious microelectronics with a full cleanroom and deep roots in materials, photonics, and devices. Upstate NY — closer and familiar for you — and notably MERIT-GENEROUS, which matters given your aid needs.
+CULTURE: Tech-focused private, rigorous, project/lab-heavy, strong industry placement.
+SELECTIVITY (approx): ~60–65% — a target, and real merit money is attainable for strong applicants.
+POSITION / WHY-US: Cite the cleanroom plus a specific device/materials interest; RPI rewards clear technical direction and demonstrated interest. Apply EA (Nov 1).
+WHAT ADMITS TEND TO SHOW: technical depth, math/science rigor, genuine fit.
+⚠ NOTE: RPI's merit awards (e.g. Rensselaer Medal / merit scholarships) can put its net price well below sticker — apply early and chase merit. A strong aid-friendly alternative to the pricier privates on your list.`,
+  },
+  {
+    name: 'University at Buffalo (SUNY)', platform: 'Common App', round: 'RD', deadline: '2026-11-01',
+    url: 'https://engineering.buffalo.edu/electrical.html', recs: '',
+    notes: 'ROLLING admission — apply by the ~Nov 1 priority date for Honors College + scholarship consideration. NY in-state value.',
+    research:
+`FIT (semiconductor/EE): NY in-state — so your aid math actually works — with legitimate electronic-materials, integrated-photonics, and device research and an active nanofab. A second affordable in-state option beside Stony Brook and CCNY, with real research access for undergrads.
+CULTURE: Large SUNY, research-active (AAU member), diverse, practical.
+SELECTIVITY (approx): Accessible (~50–65%) — a likely/target and a genuine financial safety as a NY resident.
+POSITION / WHY-US: Name specific photonics / electronic-materials research groups and apply by the Nov 1 priority date for the Honors College and scholarships.
+WHAT ADMITS TEND TO SHOW: solid academics; your in-state fit + specific research interest is the edge.
+⚠ NOTE: Rolling admission — earlier is better. Nov 1 is the priority date for best scholarship and Honors consideration, not a hard cutoff.`,
+  },
 ];
