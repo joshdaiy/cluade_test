@@ -33,8 +33,8 @@ the thinking (and your voice) leaves the room. A loop that works:
 
 0. **Add your voice samples** to `voice/` (see that folder's README) so the coach
    knows what *you* sound like.
-1. **Find the window.** Brain-dump in `notes.md`. Run `/draft` to pressure-test it
-   into one narrow moment and what it reveals about you.
+1. **Find the window.** Brain-dump in `drafts/` (copy `notes.template.md`). Run
+   `/draft` to pressure-test it into one narrow moment and what it reveals about you.
 2. **Write the draft yourself.** Your words. Ugly is fine.
 3. **`/grill` the risky parts** paragraph by paragraph. Answer the questions in
    writing — half your best sentences will come out of defending yourself.
