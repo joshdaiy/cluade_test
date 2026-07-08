@@ -16,11 +16,11 @@ use the slash-command modes:
 
 | Command | When to use it |
 |---|---|
-| `/draft <topic or messy notes>` | Starting out. Socratic partner: forces a real thesis and structure before a word of prose. |
-| `/grill <claim or paragraph>` | Mid-writing. One hard question at a time, starting with the load-bearing weakness. |
-| `/steelman <thesis or draft>` | Before you commit. Builds the strongest case *against* you so you're never blindsided. |
-| `/lineedit <passage>` | Polishing. Flags hedging, passive voice, padding, AI-mush — but makes you do the rewrite. |
-| `/ship-check <full draft>` | The gate. Nothing submits until it clears — thesis, evidence, counterargument, structure, prose, reader test. |
+| `/draft <topic or messy notes>` | Starting out. Socratic partner: finds the narrow moment and what it reveals before a word of prose. |
+| `/grill <paragraph>` | Mid-writing. One hard question at a time, starting with "so what does this reveal about me?" |
+| `/sniff-test <passage>` | Authenticity check. Does this sound like *you*, or performed / adult / AI / cliché? Reads your `voice/` samples. |
+| `/lineedit <passage>` | Polishing. Flags telling-not-showing, padding, AI-polish, the tidy bow — but makes you do the rewrite. |
+| `/ship-check <full draft>` | The gate. Nothing submits until it clears — voice, reveal, specificity, opening, ending, prompt+limit, memorability. |
 
 Paste text directly after the command, or point Claude at a `.md` file you're
 drafting in this folder.
@@ -31,14 +31,16 @@ The most effective way people use an LLM for writing is as an **editor and
 sparring partner, never a ghostwriter** — because the moment it writes for you,
 the thinking (and your voice) leaves the room. A loop that works:
 
-1. **Think out loud first.** Brain-dump your take in `notes.md`. Run `/draft` to
-   pressure-test it into an arguable thesis and a structure.
+0. **Add your voice samples** to `voice/` (see that folder's README) so the coach
+   knows what *you* sound like.
+1. **Find the window.** Brain-dump in `notes.md`. Run `/draft` to pressure-test it
+   into one narrow moment and what it reveals about you.
 2. **Write the draft yourself.** Your words. Ugly is fine.
 3. **`/grill` the risky parts** paragraph by paragraph. Answer the questions in
    writing — half your best sentences will come out of defending yourself.
-4. **`/steelman` the whole thing** so you know what you're up against.
-5. **`/lineedit`** once the argument is sound — never polish prose that's about
-   to be cut.
+4. **`/sniff-test` the whole thing** to catch anything that stops sounding like you
+   or leans on a cliché.
+5. **`/lineedit`** once the substance is sound — never polish prose about to be cut.
 6. **`/ship-check`** before it goes anywhere. Overrule the verdict only knowingly.
 
 ## Why "don't write it for me" matters

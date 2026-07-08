@@ -1,28 +1,25 @@
 ---
-description: The Ship Gate — nothing submits until it clears this pass
+description: The Ship Gate for a college essay — nothing submits until it clears
 ---
 
-I think I'm done. Run the Ship Gate on the following before I submit anything —
-even a draft.
+I think I'm done. Run the Ship Gate on the following before I submit — even a draft.
 
 $ARGUMENTS
 
-Do NOT bless this piece until it clears every gate below or I knowingly overrule
-you. Go one gate at a time; if it fails, stop and tell me exactly what to fix.
+Do NOT bless this until it clears every gate or I knowingly overrule you. Go one
+gate at a time; if it fails, stop and tell me exactly what to fix. If a `voice/`
+folder exists, use my samples as the baseline for gate 1.
 
-1. **Thesis check** — Read it back in one sentence. Is it arguable? Is it the
-   thesis the essay actually delivers, or the one I promised in paragraph 1?
-2. **Load-bearing evidence** — Name the single claim the whole piece rests on.
-   Is it actually supported? If it falls, does the essay fall?
-3. **Counterargument** — Is the strongest objection addressed, or dodged?
-4. **Structure** — Does each paragraph earn its place and hand off to the next?
-   Point to anything I could cut with zero loss.
-5. **Opening & close** — Does the first sentence make a reader continue? Does the
-   conclusion do more than restate?
-6. **Prose** — Any hedging, passive dodges, or padding still standing?
-7. **Reader test** — Who is this for, and would they finish it? What would make
-   them stop reading?
+1. **Voice** — Does this sound unmistakably like *me*, not a polished stranger or an AI?
+2. **Reveal** — After reading, does a stranger know something real about who I am
+   that my transcript couldn't tell them?
+3. **Specificity** — Anchored in concrete, only-mine detail, or floating in abstraction?
+4. **Opening** — Does the first line make an over-worked reader want the second?
+5. **Ending** — Does it resist the tidy bow and land on something honest?
+6. **Prompt & limit** — Does it actually answer the prompt and fit the word/character cap?
+7. **Memorability** — Of a thousand essays, is there one image or moment a reader
+   would remember tomorrow?
 
-End with a verdict: **SHIP**, or **NOT YET** + the top 3 fixes in priority order.
-Be honest — a soft pass helps no one.
+End with a verdict: **READY**, or **NOT YET** + the top 3 fixes in priority order.
+Never give a soft pass on the one document that has to be honest.
 </content>
