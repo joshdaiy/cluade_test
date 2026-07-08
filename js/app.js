@@ -175,6 +175,7 @@ function renderSchools() {
       <td>${esc(s.finaid || '—')}</td>
       <td><span class="badge ${s.status}">${esc((s.status || '').replace('-', ' '))}</span></td>
       <td><div class="row-actions">
+        <button class="btn ghost small" data-research-school="${s.id}" title="Deep research & strategy">🔬${s.research ? ' ✓' : ''}</button>
         <button class="btn ghost small" data-edit-school="${s.id}">Edit</button>
         <button class="btn ghost small" data-del-school="${s.id}">✕</button>
       </div></td>
@@ -222,10 +223,47 @@ function saveSchoolFromForm(id) {
     notes: document.getElementById('f_notes').value.trim(),
   };
   if (!rec.name) { toast('School needs a name'); return false; }
+  const existing = state.schools.find(x => x.id === id);
+  if (existing && existing.research) rec.research = existing.research; // preserve saved research
   const idx = state.schools.findIndex(x => x.id === id);
   if (idx >= 0) state.schools[idx] = rec; else state.schools.push(rec);
   save(); return true;
 }
+
+/* Deep research on a specific school (Claude-generated background + strategy). */
+function openResearch(id) {
+  const s = state.schools.find(x => x.id === id);
+  if (!s) return;
+  const bodyHtml = `
+    <p class="hint">Claude-generated background and application strategy for <strong>${esc(s.name)}</strong>, tailored to your profile. This synthesizes public knowledge about the school and general patterns in what admitted students emphasize — it does <em>not</em> reproduce anyone's actual essays.</p>
+    <div class="ai-out" id="research-out">${s.research ? esc(s.research) : '<span class="muted">No research yet. Click Generate.</span>'}</div>`;
+  openModal('🔬 Deep research: ' + s.name, bodyHtml, [
+    { label: s.research ? 'Regenerate' : 'Generate', primary: true, onClick: () => generateResearch(id) },
+  ]);
+}
+async function generateResearch(id) {
+  const s = state.schools.find(x => x.id === id);
+  const out = document.getElementById('research-out');
+  const sys = `You are a knowledgeable, honest college admissions advisor. Produce concise, genuinely useful research on ONE specific college for an applicant. Use clear sections with these headers exactly:
+1) Academic strengths & standout programs
+2) Culture & what they value in students
+3) Selectivity & context (state that figures are approximate)
+4) How to position THIS application — specific "Why us" angles tied to real programs, traditions, or opportunities at the school
+5) What admitted students tend to emphasize — general themes and traits only
+Rules: be specific to this school, not generic; tailor point 4 to the student's profile; do NOT fabricate or reproduce any real applicant's essay; flag anything you are unsure about. Keep it tight and skimmable.`;
+  const user = `${profileContext()}\n\nSchool: ${s.name}${s.url ? ' (' + s.url + ')' : ''}\nApplication round I'm considering: ${s.round || 'undecided'}`;
+  await runAI(out, async () => {
+    const text = await callClaude(user, sys, 2500);
+    s.research = text;
+    save();
+    renderSchools(); // refresh the ✓ marker
+    return text;
+  });
+}
+document.getElementById('schoolBody').addEventListener('click', e => {
+  const r = e.target.closest('[data-research-school]');
+  if (r) openResearch(r.dataset.researchSchool);
+});
 
 document.getElementById('addSchoolBtn').addEventListener('click', () => {
   openModal('Add school', schoolForm(), [{ label: 'Save', primary: true, onClick: () => { if (saveSchoolFromForm(null)) { closeModal(); renderAll(); } } }]);
@@ -428,6 +466,17 @@ document.getElementById('oppBody').addEventListener('click', e => {
   } else if (del) {
     if (confirm('Delete this opportunity?')) { state.opportunities = state.opportunities.filter(x => x.id !== del.dataset.delOpp); save(); renderAll(); }
   }
+});
+document.getElementById('loadFlyinsBtn').addEventListener('click', () => {
+  const existing = new Set(state.opportunities.map(o => (o.name || '').toLowerCase()));
+  let added = 0;
+  (window.FLYIN_2026 || []).forEach(f => {
+    if (existing.has((f.name || '').toLowerCase())) return;
+    state.opportunities.push(Object.assign({ id: uid(), type: 'Fly-in', status: 'researching' }, f));
+    added++;
+  });
+  save(); renderAll();
+  toast(added ? `Added ${added} fly-in program${added > 1 ? 's' : ''} — verify each date on its official site` : 'Already loaded — no duplicates added');
 });
 document.getElementById('matchBtn').addEventListener('click', () => {
   openModal('Match opportunities to me',
