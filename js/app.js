@@ -265,6 +265,17 @@ document.getElementById('schoolBody').addEventListener('click', e => {
   if (r) openResearch(r.dataset.researchSchool);
 });
 
+document.getElementById('loadSchoolsBtn').addEventListener('click', () => {
+  const existing = new Set(state.schools.map(s => (s.name || '').toLowerCase()));
+  let added = 0;
+  (window.MY_SCHOOLS || []).forEach(s => {
+    if (existing.has((s.name || '').toLowerCase())) return;
+    state.schools.push(Object.assign({ id: uid(), status: 'not-started', supplements: [] }, s));
+    added++;
+  });
+  save(); renderAll();
+  toast(added ? `Added ${added} school${added > 1 ? 's' : ''} with research — verify deadlines` : 'Already loaded — no duplicates added');
+});
 document.getElementById('addSchoolBtn').addEventListener('click', () => {
   openModal('Add school', schoolForm(), [{ label: 'Save', primary: true, onClick: () => { if (saveSchoolFromForm(null)) { closeModal(); renderAll(); } } }]);
 });
