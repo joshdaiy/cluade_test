@@ -489,6 +489,17 @@ document.getElementById('loadFlyinsBtn').addEventListener('click', () => {
   save(); renderAll();
   toast(added ? `Added ${added} fly-in program${added > 1 ? 's' : ''} — verify each date on its official site` : 'Already loaded — no duplicates added');
 });
+document.getElementById('loadScholarshipsBtn').addEventListener('click', () => {
+  const existing = new Set(state.opportunities.map(o => (o.name || '').toLowerCase()));
+  let added = 0;
+  (window.STEM_SCHOLARSHIPS || []).forEach(s => {
+    if (existing.has((s.name || '').toLowerCase())) return;
+    state.opportunities.push(Object.assign({ id: uid(), type: 'Scholarship', status: 'researching' }, s));
+    added++;
+  });
+  save(); renderAll();
+  toast(added ? `Added ${added} STEM scholarship${added > 1 ? 's' : ''} — verify each deadline on its official site` : 'Already loaded — no duplicates added');
+});
 document.getElementById('matchBtn').addEventListener('click', () => {
   openModal('Match opportunities to me',
     `<p class="hint">Paste a list of fly-in programs / scholarships (names, deadlines, eligibility). Claude will flag which ones fit your profile and rank by deadline urgency. Then add the good ones manually.</p>
