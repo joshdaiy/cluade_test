@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Launchpad — College Application Organizer</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">🚀</span>
+      <div>
+        <h1>Launchpad</h1>
+        <p class="tagline">Your college application command center</p>
+      </div>
+    </div>
+    <nav class="tabs" id="tabs">
+      <button data-tab="dashboard" class="active">Dashboard</button>
+      <button data-tab="schools">Schools</button>
+      <button data-tab="essays">Essays</button>
+      <button data-tab="opportunities">Opportunities</button>
+      <button data-tab="activities">Activities</button>
+      <button data-tab="settings">Settings</button>
+    </nav>
+  </header>
+
+  <main id="app">
+    <!-- DASHBOARD -->
+    <section class="tab-panel active" id="tab-dashboard">
+      <div class="panel-head">
+        <h2>What to do next</h2>
+        <button class="btn ghost" id="coachBtn">🤖 Coach me</button>
+      </div>
+      <div class="stat-row" id="statRow"></div>
+      <div class="two-col">
+        <div class="card">
+          <h3>Upcoming deadlines</h3>
+          <div id="deadlineList" class="list"></div>
+        </div>
+        <div class="card">
+          <h3>Priorities</h3>
+          <div id="coachOut" class="coach-out muted">Click “Coach me” to get an AI read on your status and what to tackle next.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCHOOLS -->
+    <section class="tab-panel" id="tab-schools">
+      <div class="panel-head">
+        <h2>Schools</h2>
+        <div class="head-actions">
+          <button class="btn ghost" id="loadSchoolsBtn">📥 Load my college list</button>
+          <button class="btn ghost" id="extractBtn">🤖 Extract requirements</button>
+          <button class="btn" id="addSchoolBtn">+ Add school</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table id="schoolTable">
+          <thead>
+            <tr>
+              <th>School</th><th>Platform</th><th>Round</th><th>Deadline</th>
+              <th>Essays</th><th>Recs</th><th>Fin. aid</th><th>Status</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="schoolBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ESSAYS -->
+    <section class="tab-panel" id="tab-essays">
+      <div class="panel-head">
+        <h2>Essays</h2>
+        <button class="btn" id="addEssayBtn">+ Add essay</button>
+      </div>
+      <p class="hint">Group drafts by prompt type so you can spot overlap and reuse. Use the AI buttons on each essay for feedback and brainstorming on <em>your own</em> writing.</p>
+      <div id="essayList" class="essay-list"></div>
+    </section>
+
+    <!-- OPPORTUNITIES -->
+    <section class="tab-panel" id="tab-opportunities">
+      <div class="panel-head">
+        <h2>Opportunities</h2>
+        <div class="head-actions">
+          <button class="btn ghost" id="loadFlyinsBtn">📥 Load 2026 fly-ins</button>
+          <button class="btn ghost" id="matchBtn">🤖 Match to me</button>
+          <button class="btn" id="addOppBtn">+ Add opportunity</button>
+        </div>
+      </div>
+      <p class="hint">Fly-in programs, scholarships, and summer programs. Many fly-in deadlines land in August — sort by deadline and knock out the soonest first.</p>
+      <div class="table-wrap">
+        <table id="oppTable">
+          <thead>
+            <tr><th>Name</th><th>Type</th><th>Org</th><th>Deadline</th><th>Amount / notes</th><th>Status</th><th></th></tr>
+          </thead>
+          <tbody id="oppBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ACTIVITIES -->
+    <section class="tab-panel" id="tab-activities">
+      <div class="panel-head">
+        <h2>Activities & ECs</h2>
+        <button class="btn" id="addActBtn">+ Add activity</button>
+      </div>
+      <p class="hint">Track your extracurriculars, awards, and what you’re doing now — so you can see gaps and decide where to invest before applications.</p>
+      <div id="actList" class="essay-list"></div>
+    </section>
+
+    <!-- SETTINGS -->
+    <section class="tab-panel" id="tab-settings">
+      <h2>Settings</h2>
+      <div class="card">
+        <h3>Your profile</h3>
+        <label>Name <input id="profName" type="text" placeholder="Your name" /></label>
+        <label>Graduation year <input id="profGradYear" type="number" placeholder="2027" /></label>
+        <label>Intended major(s) <input id="profMajor" type="text" placeholder="e.g. Computer Science, Economics" /></label>
+        <label>Notes / context for the AI coach
+          <textarea id="profNotes" rows="3" placeholder="GPA, test scores, hooks, financial aid needs, anything the coach should know."></textarea>
+        </label>
+      </div>
+
+      <div class="card">
+        <h3>Claude connector</h3>
+        <p class="hint">The AI features call Claude directly from your browser using <strong>your own</strong> Anthropic API key. Get one at <span class="mono">console.anthropic.com</span> → API Keys. It’s stored only in this browser (localStorage) and never sent anywhere except Anthropic.</p>
+        <label>Anthropic API key <input id="apiKey" type="password" placeholder="sk-ant-..." /></label>
+        <label>Model
+          <select id="model">
+            <option value="claude-opus-4-8">Claude Opus 4.8 — most capable ($5 / $25 per 1M tokens)</option>
+            <option value="claude-sonnet-5">Claude Sonnet 5 — balanced ($3 / $15)</option>
+            <option value="claude-haiku-4-5">Claude Haiku 4.5 — cheapest/fastest ($1 / $5)</option>
+          </select>
+        </label>
+        <button class="btn ghost" id="testKeyBtn">Test connection</button>
+        <span id="testKeyOut" class="muted"></span>
+      </div>
+
+      <div class="card">
+        <h3>Backup & sharing</h3>
+        <p class="hint">Your data lives in this browser. Export a JSON snapshot to back it up or hand it to a counselor/parent; they can Import it to view your list. (Live multi-user sync is a future upgrade.)</p>
+        <div class="head-actions">
+          <button class="btn" id="exportBtn">⬇ Export data</button>
+          <button class="btn ghost" id="importBtn">⬆ Import data</button>
+          <input type="file" id="importFile" accept="application/json" hidden />
+          <button class="btn danger" id="resetBtn">Reset everything</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Reference: essays that worked</h3>
+        <p class="hint">Publicly published examples for inspiration (read them, don’t copy). We don’t scrape paywalled databases.</p>
+        <ul class="link-list">
+          <li><a href="https://apply.jhu.edu/college-planning-guide/essays-that-worked/" target="_blank" rel="noopener">Johns Hopkins — Essays That Worked</a></li>
+          <li><a href="https://www.collegeessayguy.com/blog/college-essay-examples" target="_blank" rel="noopener">College Essay Guy — free examples</a></li>
+          <li><a href="https://blog.collegevine.com/college-fly-in-and-diversity-programs-a-complete-list/" target="_blank" rel="noopener">CollegeVine — fly-in & diversity program list</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal-backdrop" id="modalBackdrop" hidden>
+    <div class="modal" id="modal">
+      <div class="modal-head"><h3 id="modalTitle"></h3><button class="x" id="modalClose">✕</button></div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-foot" id="modalFoot"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="js/flyins.js"></script>
+  <script src="js/myschools.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
